@@ -16,6 +16,11 @@
     "default": ["别说话", "休息吧", "下线吧"],
     "hint": "例如：休息吧"
   },
+  "sleep_farewell": {
+    "description": "触发休眠词后机器人发的告别语（{name} 会替换为发送休眠词的群友昵称；留空则不发告别语）",
+    "type": "string",
+    "default": "好的～我溜了～"
+  },
   "active_minutes": {
     "description": "唤醒持续时间（分钟），活跃期内再次唤醒会重新计时",
     "type": "float",

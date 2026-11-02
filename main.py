@@ -174,6 +174,10 @@ class WakeChatter(Star):
         if is_sleep and state["active_until"] > now:
             self.group_states.pop(group_id, None)
             logger.info(f"[唤醒陪聊] 群 {group_id} 检测到休眠词，已休眠（发送者: {name}）")
+            # 发送告别语（支持 {name} 占位符；配置为空则不发）
+            farewell = str(self.config.get("sleep_farewell") or "").strip()
+            if farewell:
+                await self._send_reply(event, farewell.replace("{name}", name), at_sender=False)
             return
 
         # ---------- 唤醒逻辑 ----------

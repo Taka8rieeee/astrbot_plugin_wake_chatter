@@ -10,6 +10,12 @@
     "default": ["小助手", "出来聊天", "起床了"],
     "hint": "例如：小助手"
   },
+  "sleep_words": {
+    "description": "休眠词列表（活跃期内消息中包含任意一个即立即休眠；休眠状态下不生效）",
+    "type": "list",
+    "default": ["别说话", "休息吧", "下线吧"],
+    "hint": "例如：休息吧"
+  },
   "active_minutes": {
     "description": "唤醒持续时间（分钟），活跃期内再次唤醒会重新计时",
     "type": "float",

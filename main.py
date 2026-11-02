@@ -37,7 +37,8 @@ class WakeChatter(Star):
     2. 活跃期间以一定概率随机插话，"偶尔加入大家的讨论"；
     3. 活跃时长可配置（默认 5 分钟），活跃期内再次唤醒会刷新倒计时；
     4. 单次活跃期内的最大回复条数可配置（超过后保持沉默直到休眠）；
-    5. 所有参数均可在 WebUI 插件配置页修改。
+    5. 活跃期内检测到休眠词会立即休眠；
+    6. 所有参数均可在 WebUI 插件配置页修改。
     """
 
     def __init__(self, context: Context, config: AstrBotConfig):
@@ -160,10 +161,18 @@ class WakeChatter(Star):
 
         wake_words = [str(w).strip() for w in (self.config.get("wake_words") or []) if str(w).strip()]
         is_wake = bool(wake_words) and any(w in text for w in wake_words)
+        sleep_words = [str(w).strip() for w in (self.config.get("sleep_words") or []) if str(w).strip()]
+        is_sleep = bool(sleep_words) and any(w in text for w in sleep_words)
 
         state = self._state(group_id)
         now = time.time()
         duration = float(self.config.get("active_minutes") or 5) * 60
+
+        # ---------- 休眠逻辑（优先于唤醒：活跃期内检测到休眠词立即休眠） ----------
+        if is_sleep and state["active_until"] > now:
+            self.group_states.pop(group_id, None)
+            logger.info(f"[唤醒陪聊] 群 {group_id} 检测到休眠词，已休眠（发送者: {name}）")
+            return
 
         # ---------- 唤醒逻辑 ----------
         if is_wake:

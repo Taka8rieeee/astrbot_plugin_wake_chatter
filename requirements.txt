@@ -1,0 +1,1 @@
+# 本插件仅使用 AstrBot 内置依赖（标准库 + astrbot api），无第三方依赖

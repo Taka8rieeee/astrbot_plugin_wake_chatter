@@ -1,0 +1,79 @@
+{
+  "enabled": {
+    "description": "插件总开关",
+    "type": "bool",
+    "default": true
+  },
+  "wake_words": {
+    "description": "唤醒词列表（消息中包含任意一个即触发唤醒）",
+    "type": "list",
+    "default": ["小助手", "出来聊天", "起床了"],
+    "hint": "例如：小助手"
+  },
+  "active_minutes": {
+    "description": "唤醒持续时间（分钟），活跃期内再次唤醒会重新计时",
+    "type": "float",
+    "default": 5
+  },
+  "max_replies": {
+    "description": "单次活跃期内最多自主回复的条数，用完后保持沉默直到休眠",
+    "type": "int",
+    "default": 10
+  },
+  "random_reply_chance": {
+    "description": "活跃期内对每条普通消息随机插话的概率（0~1，即“偶尔加入讨论”的频率）",
+    "type": "float",
+    "default": 0.15
+  },
+  "reply_cooldown_seconds": {
+    "description": "两次自主回复之间的最小间隔（秒），防止刷屏",
+    "type": "int",
+    "default": 15
+  },
+  "enabled_groups": {
+    "description": "生效群号列表（留空表示对所有群生效）",
+    "type": "list",
+    "default": [],
+    "hint": "例如：123456789"
+  },
+  "wake_reply_enabled": {
+    "description": "被唤醒时是否回复唤醒者",
+    "type": "bool",
+    "default": true
+  },
+  "at_sender": {
+    "description": "回复时是否 @ 对方",
+    "type": "bool",
+    "default": true
+  },
+  "use_llm": {
+    "description": "使用 LLM 根据聊天上下文生成回复（关闭则使用下方语料随机回复）",
+    "type": "bool",
+    "default": true
+  },
+  "llm_system_prompt": {
+    "description": "LLM 回复的人格设定（system prompt）",
+    "type": "text",
+    "default": "你是 QQ 群聊里的一名普通活跃群友，说话口语化、简短自然，偶尔用表情和梗，不要像客服，不要自我介绍。"
+  },
+  "wake_greeting": {
+    "description": "被唤醒时的固定欢迎语模板（{name} 会替换为唤醒者昵称；仅在 LLM 关闭或调用失败时使用，留空则用下方唤醒语料）",
+    "type": "string",
+    "default": "我来啦～{name} 叫我什么事？"
+  },
+  "wake_greetings": {
+    "description": "自定义唤醒欢迎语语料（含 {name} 占位符；留空使用内置语料）",
+    "type": "list",
+    "default": []
+  },
+  "random_replies": {
+    "description": "自定义随机插话语料（LLM 关闭或调用失败时使用；留空使用内置语料）",
+    "type": "list",
+    "default": []
+  },
+  "max_reply_length": {
+    "description": "单条回复最大字数（超出截断）",
+    "type": "int",
+    "default": 200
+  }
+}

@@ -123,6 +123,8 @@ class WakeChatter(Star):
             chain = MessageChain().message(text)
         try:
             await self.context.send_message(event.unified_msg_origin, chain)
+            group_id = str(event.message_obj.group_id or "")
+            logger.info(f"[唤醒陪聊] 群 {group_id} 已发送回复 -> {text}")
         except Exception as e:  # noqa: BLE001
             logger.error(f"[唤醒陪聊] 消息发送失败: {e}")
 

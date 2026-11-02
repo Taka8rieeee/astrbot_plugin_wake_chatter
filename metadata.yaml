@@ -2,7 +2,7 @@ name: astrbot_plugin_wake_chatter
 display_name: 群聊唤醒陪聊
 desc: 通过唤醒词唤醒机器人加入 QQ 群聊讨论。唤醒后会在可调时长内（默认 5 分钟）以一定概率自主插话，活跃期内重复唤醒会刷新倒计时；回复条数、唤醒时长、概率等均可在 WebUI 后台配置。
 short_desc: 唤醒词唤醒后自主参与群聊，回复次数与唤醒时长可配置。
-version: v1.1.0
+version: v1.1.1
 author: Taka8rieeee
 repo: https://github.com/Taka8rieeee/astrbot_plugin_wake_chatter
 support_platforms:
